@@ -207,3 +207,14 @@ class TestProductModel(unittest.TestCase):
         filter_product = Product.find_by_price(str(string_price_first_product))
         for product in filter_product:
             self.assertEqual(product.price, string_price_first_product)
+
+    def test_find(self):
+        """It should find a Product by id"""
+        product = ProductFactory()
+        product.id = None
+        product.create()
+
+        id_to_search = product.id
+
+        found_product = Product.find(id_to_search)
+        self.assertEqual(found_product, product)
