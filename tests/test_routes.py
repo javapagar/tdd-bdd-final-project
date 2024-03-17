@@ -209,8 +209,8 @@ class TestProductRoutes(TestCase):
         response = self.client.get(f"{BASE_URL}/{product_for_test.id}")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        response = self.client.get(f"{BASE_URL}/{product_for_test.id}")
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        response = self.client.delete(f"{BASE_URL}/{product_for_test.id}")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_read_all(self):
         """It should get all products"""
