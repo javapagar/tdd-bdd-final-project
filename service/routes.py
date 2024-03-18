@@ -117,7 +117,8 @@ def list_products():
         products = Product.find_by_category(category)
     elif filter_available:
         app.logger.info("Find available %s", filter_available)
-        products = Product.find_by_availability(filter_available)
+        available_value = filter_available.lower() in ["true", "yes", "1"]
+        products = Product.find_by_availability(available_value)
     else:
         products = Product.all()
 

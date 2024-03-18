@@ -189,7 +189,7 @@ $(function () {
 
         let name = $("#product_name").val();
         let description = $("#product_description").val();
-        let available = $("#product_available").val() == "true";
+        let available = $("#product_available").val();
         let category = $("#product_category").val();
 
         let queryString = ""

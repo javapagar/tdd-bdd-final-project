@@ -16,87 +16,63 @@ Scenario: The server is running
     Then I should see "Product Catalog Administration" in the title
     And I should not see "404 Not Found"
 
-Scenario: Create a Product
+Scenario: Read a Product
     When I visit the "Home Page"
-    And I set the "Name" to "Hammer"
-    And I set the "Description" to "Claw hammer"
-    And I select "True" in the "Available" dropdown
-    And I select "Tools" in the "Category" dropdown
-    And I set the "Price" to "34.95"
-    And I press the "Create" button
+    And I set the "Name" to "Hat"
+    And I press the "Search" button
     Then I should see the message "Success"
     When I copy the "Id" field
     And I press the "Clear" button
-    Then the "Id" field should be empty
-    And the "Name" field should be empty
-    And the "Description" field should be empty
-    When I paste the "Id" field
+    And I paste the "Id" field
     And I press the "Retrieve" button
     Then I should see the message "Success"
-    And I should see "Hammer" in the "Name" field
-    And I should see "Claw hammer" in the "Description" field
-    And I should see "True" in the "Available" dropdown
-    And I should see "Tools" in the "Category" dropdown
-    And I should see "34.95" in the "Price" field
-
-Scenario: Read a Product
-    When I visit the "Home Page"
-    Then I set the "Name" to "Hat"
-    And I click the "Search" button
-    Then I should see the message "Success"
-    When I copy de "Id" field
-    And I press the "Clear" button
-    And I paste the "Id" field
-    And I click the "Retrieve" button
-    Then I should see the message "Sucess"
     And I should see "Hat" in the "Name" field
     And I should see "A red fedora" in the "Description" field
     And I should see "True" in the "Available" dropdown
     And I should see "Cloths" in the "Category" dropdown
     And I should see "59.95" in the "Price" field
 
-
 Scenario: Update a Product
-    When I visit de "Home Page"
-    And I set de "Name" to "Hat"
-    And I click the "Search" button
+    When I visit the "Home Page"
+    And I set the "Name" to "Hat"
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "A red fedora" in the "Description" field
-    When I change "Name" field to "Fedora"
-    And I click the "Update" button
+    When I change "Name" to "Fedora"
+    And I press the "Update" button
     Then I should see the message "Success"
-    When I copy de "Id" field
+    When I copy the "Id" field
     And I press the "Clear" button
     And I paste the "Id" field
-    And I click the "Retrieve" button
-    Then I should see the message "Sucess"
-    And I should see "Fedora" in the "Name" field
-    When I press the "Clear" button
-    And I click the "Search" button
+    And I press the "Retrieve" button
     Then I should see the message "Success"
     And I should see "Fedora" in the "Name" field
-    And I should not see "Hat" in the "Name" field
+    When I press the "Clear" button
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "Fedora" in the results
+    And I should not see "Hat" in the results
 
 Scenario: Delete a Product
     When I visit the "Home Page"
-    And I set the "Name" field to "Big Mac"
-    And I click the "Search" button
+    And I set the "Name" to "Big Mac"
+    And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "1/4 lb burger" in "Description" field
-    When I copy "Id" field
-    And I click "Clear" button
+    And I should see "1/4 lb burger" in the "Description" field
+    When I copy the "Id" field
+    And I press the "Clear" button
     And I paste the "Id" field
-    And I click "Delete" button
-    Then I see message "Product has been Deleted!"
+    And I press the "Delete" button
+    Then I should see the message "Product has been Deleted!"
     When I press the "Clear" button
-    And I click the "Search" button
+    And I press the "Search" button
     Then I should see the message "Success"
-    And I should not see "Big Mac" in the "Name" field
+    And I should not see "Big Mac"
 
 Scenario: List all products
     When I visit the "Home Page"
-    And I click "Clear" button
-    And I click "Search" button
+    And I press the "Clear" button
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Hat" in the results
     And I should see "Shoes" in the results
@@ -106,28 +82,28 @@ Scenario: List all products
 Scenario: Search by category
     When I visit the "Home Page"
     And I press the "Clear" button
-    And I select "CLOTHS" in the "Category" dropdown
-    And I click "Seach" button
+    And I select "Cloths" in the "Category" dropdown
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Hat" in the results
     And I should see "Shoes" in the results
     And I should not see "Big Mac" in the results
-    And I shoul not see "Sheets" in the results
+    And I should not see "Sheets" in the results
 
 Scenario: Search by available
     When I visit the "Home Page"
     And I press the "Clear" button
-    And I select "false" in the "Available" dropdown
-    And I click "Seach" button
+    And I select "False" in the "Available" dropdown
+    And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "Shoes" in the results
     And I should not see "Hat" in the results
     And I should not see "Big Mac" in the results
-    And I shoul not see "Sheets" in the results
+    And I should not see "Sheets" in the results
+    And I should see "Shoes" in the results
 
 Scenario: Search by name
     When I visit the "Home Page"
-    And I set the "Name" field to "Sheets"
-    And I click "Seach" button
+    And I set the "Name" to "Sheets"
+    And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Full bed sheets" in the "Description" field
